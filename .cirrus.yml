@@ -21,14 +21,18 @@ task:
       memory: 32G
 
   Checks_script:
-      - curl -sL https://raw.githubusercontent.com/NFS-projects/OrangeFox-CI/fox/scripts/checks.sh | bash
+      - curl -sL https://raw.githubusercontent.com/NFS-projects/OrangeFox-CI/fox/scripts/checks.sh
+      - bash checks.sh
 
   Sync_script:
-      - curl -sL https://raw.githubusercontent.com/NFS-projects/OrangeFox-CI/fox/scripts/sync.sh | bash
+      - curl -sL https://raw.githubusercontent.com/NFS-projects/OrangeFox-CI/fox/scripts/sync.sh
+      - bash sync.sh
 
   Build_script:
-      - curl -sL https://raw.githubusercontent.com/NFS-projects/OrangeFox-CI/fox/scripts/build.sh | bash
+      - curl -sL https://raw.githubusercontent.com/NFS-projects/OrangeFox-CI/fox/scripts/build.sh
+      - bash build.sh
 
   Upload_script:
       - export TIMEOUT=43200 # Link timeout (in minutes)
-      - curl https://raw.githubusercontent.com/NFS-projects/OrangeFox-CI/fox/scripts/upload.sh | bash
+      - curl https://raw.githubusercontent.com/NFS-projects/OrangeFox-CI/fox/scripts/upload.sh
+      - upload.sh

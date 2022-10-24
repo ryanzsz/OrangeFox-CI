@@ -2,7 +2,7 @@
 
 # Device
 export FOX_BRANCH="fox_11.0"
-export DT_LINK="https://github.com/baunilla/twrp_device_xiaomi_rosy -b android-11"
+export DT_LINK="https://github.com/NFS-Project/twrp_device_xiaomi_rosy -b android-11"
 
 export DEVICE="rosy"
 export OEM="xiaomi"

@@ -50,6 +50,9 @@ TG_TEXT=$(< tg.html)
 telegram_message "${TG_TEXT}"
 echo " "
 
+# Kernel tree
+git clone --depth 1 https://github.com/baunilla/android_kernel_xiaomi_rosy -b lineage-19.0 kernel/xiaomi/rosy
+
 # Prepare the Build Environment
 source build/envsetup.sh
 

@@ -3,16 +3,32 @@
 # Source Vars
 source $CONFIG
 
-# A Function to Send Posts to Telegram
-telegram_message() {
-	curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
-	-d chat_id="${TG_CHAT_ID}" \
-	-d parse_mode="HTML" \
-	-d text="$1"
-}
-
 # Change to the Source Directory
 cd $SYNC_PATH
+
+# Change to the Output Directory
+cd out/target/product/${DEVICE}
+
+DATE_L=$(date +%d\ %B\ %Y)
+DATE_S=$(date +"%T")
+
+# A Function to Send Posts to Telegram
+telegram_message() {
+	curl -v "https://api.telegram.org/bot""$TG_TOKEN""/sendPhoto?chat_id=""$TG_CHAT_ID""$ARGS_EXTRA" -H 'Content-Type: multipart/form-data' \
+	-F photo=@"${CIRRUS_WORKING_DIR}/logo/OrangeFox.jpg" \
+	-F "parse_mode=html" \
+	-F caption="🦊 <b>OrangeFox Recovery CI</b>
+==========================
+✅ <b>Build Completed Successfully</b>
+
+📱 <b>Device:</b> "${DEVICE}"
+🖥 <b>Branch Build:</b> "${FOX_BRANCH}"
+📂 <b>Size: "$(ls -lh $FILENAME | cut -d ' ' -f5)"</b>
+📥 <b>Download Link:</b> <a href=\"${DL_LINK}\">Here</a>
+📅 <b>Date:</b> "$(date +%d\ %B\ %Y)"
+⏰ <b>Time:</b> "$(date +%T)"
+=========================="
+}
 
 # Color
 ORANGE='\033[0;33m'
@@ -21,9 +37,6 @@ ORANGE='\033[0;33m'
 echo "============================"
 echo "Uploading the Build..."
 echo "============================"
-
-# Change to the Output Directory
-cd out/target/product/${DEVICE}
 
 # Set FILENAME var
 FILENAME=$(echo $OUTPUT)
@@ -49,26 +62,8 @@ echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!";
 echo "Mirror: ${MIRROR_LINK}" || { echo "WARNING: Failed to Mirror the Build!"; }
 echo "=============================================="
 
-DATE_L=$(date +%d\ %B\ %Y)
-DATE_S=$(date +"%T")
-
 # Send the Message on Telegram
-echo -e \
-"
-🦊 OrangeFox Recovery CI
-
-✅ Build Completed Successfully!
-
-📱 Device: "${DEVICE}"
-🖥 Build System: "${FOX_BRANCH}"
-⬇️ Download Link: <a href=\"${DL_LINK}\">Here</a>
-📅 Date: "$(date +%d\ %B\ %Y)"
-⏱ Time: "$(date +%T)"
-" > tg.html
-
-TG_TEXT=$(< tg.html)
-
-telegram_message "$TG_TEXT"
+telegram_message
 
 echo " "
 

@@ -3,12 +3,12 @@
 # env variable
 
 # Default Branch for Orangefox
-export FOX_BRANCH="fox_11.0"
+export FOX_BRANCH="fox_12.1"
 export ARGS_EXTRA=""
 
 # Device Tree
-export DT_LINK="https://github.com/NFS-Project/twrp_device_xiaomi_rosy"
-export DT_BRANCH="android-11"
+export DT_LINK="https://github.com/NFS-Project/ofx_device_xiaomi_rosy"
+export DT_BRANCH="fox_12.1"
 
 export DEVICE="rosy"
 export OEM="xiaomi"
@@ -23,12 +23,12 @@ export OUTPUT="OrangeFox*.zip"
 
 # Kernel Source
 # Uncomment the next line if you want to clone a kernel source.
-export KERNEL_SOURCE="https://github.com/NFS-Project/android_kernel_xiaomi_rosy"
-export KERNEL_BRANCH="thirteen"
+#export KERNEL_SOURCE="https://github.com/NFS-Project/android_kernel_xiaomi_rosy"
+#export KERNEL_BRANCH="thirteen"
 
 # Extra Command
 export EXTRA_CMD1="git clone https://github.com/OrangeFoxRecovery/Avatar.git misc"
-export EXTRA_CMD2="rm -rfd vendor/qcom/opensource/cryptfs_hw"
+export EXTRA_CMD2="git clone --depth=1 https://github.com/TeamWin/android_device_xiaomi_mithorium-common -b android-12.1 device/xiaomi/mithorium-common"
 export EXTRA_CMD3=""
 export EXTRA_CMD4=""
 export EXTRA_CMD5=""

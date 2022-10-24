@@ -44,7 +44,11 @@ telegram_message
 echo " "
 
 # Run the Extra Command
-$EXTRA_CMD
+$EXTRA_CMD1
+$EXTRA_CMD2
+$EXTRA_CMD3
+$EXTRA_CMD4
+$EXTRA_CMD5
 
 # Prepare the Build Environment
 . build/envsetup.sh

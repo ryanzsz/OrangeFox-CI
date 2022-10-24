@@ -9,8 +9,7 @@ export ARGS_EXTRA=""
 # Device Tree
 export DT_LINK="https://github.com/NFS-Project/twrp_device_xiaomi_rosy"
 export DT_BRANCH="android-11"
-export KERNEL_SOURCE="https://github.com/NFS-Project/android_kernel_xiaomi_rosy"
-export KERNEL_BRANCH="thirteen"
+
 export DEVICE="rosy"
 export OEM="xiaomi"
 
@@ -24,11 +23,15 @@ export OUTPUT="OrangeFox*.zip"
 
 # Kernel Source
 # Uncomment the next line if you want to clone a kernel source.
-#export KERNEL_SOURCE="https://gitlab.com/OrangeFox/kernel/mojito.git"
-#export PLATFORM="sm6150" # Leave it commented if you want to clone the kernel to kernel/$OEM/$DEVICE
+export KERNEL_SOURCE="https://github.com/NFS-Project/android_kernel_xiaomi_rosy"
+export KERNEL_BRANCH="thirteen"
 
 # Extra Command
-export EXTRA_CMD="git clone https://github.com/OrangeFoxRecovery/Avatar.git misc && rm -rfd vendor/qcom/opensource/cryptfs_hw"
+export EXTRA_CMD1="git clone https://github.com/OrangeFoxRecovery/Avatar.git misc"
+export EXTRA_CMD2="rm -rfd vendor/qcom/opensource/cryptfs_hw"
+export EXTRA_CMD3=""
+export EXTRA_CMD4=""
+export EXTRA_CMD5=""
 
 # Magisk
 ## Use the Latest Release of Magisk for the OrangeFox addon

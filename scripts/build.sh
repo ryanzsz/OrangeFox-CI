@@ -63,9 +63,6 @@ if [ -z "$FOX_BUILD_TYPE" ]; then
     export FOX_BUILD_TYPE="Release"
 fi
 
-# Default Maintainer's Name
-[ -z "$OF_MAINTAINER" ] && export OF_MAINTAINER="NFS-project™"
-
 # Set BRANCH_INT variable for future use
 BRANCH_INT=$(echo $SYNC_BRANCH | cut -d. -f1)
 

@@ -3,6 +3,10 @@
 # Source Configs
 source $CONFIG
 
+msg() {
+    echo -e "\e[1;32m$*\e[0m"
+}
+
 # Telegram
 tg_check=$(grep 'TG' $CONFIG | wc -l)
 if [[ $tg_check -gt 0 ]]; then
@@ -16,3 +20,5 @@ if [[ $curl_check -gt 0 ]]; then
     echo -e "Please dont use \'curl\' in $CONFIG".
     exit 1
 fi
+
+msg Passed

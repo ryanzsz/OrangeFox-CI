@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Device
-export FOX_BRANCH="fox_9.0"
-export DT_LINK="https://github.com/NFS-Project/ofx_device_xiaomi_rosy -b fox-9.0"
+export FOX_BRANCH="fox_11.0"
+export DT_LINK="https://github.com/baunilla/twrp_device_xiaomi_rosy -b android-11"
 
 export DEVICE="rosy"
 export OEM="xiaomi"

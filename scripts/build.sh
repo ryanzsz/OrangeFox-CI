@@ -57,6 +57,11 @@ $EXTRA_CMD5
 export ALLOW_MISSING_DEPENDENCIES=true
 export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
 export LC_ALL="C"
+export PATH="/usr/lib/ccache:$PATH"
+export CCACHE_EXEC=$(which ccache)
+export CCACHE_COMPRESS=true
+which ccache
+ccache -z
 
 # Default Build Type
 if [ -z "$FOX_BUILD_TYPE" ]; then

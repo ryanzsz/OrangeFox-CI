@@ -9,19 +9,27 @@ env:
     TG_CHAT_ID: ENCRYPTED[111c0c2f3915d20bf797b0d6cf6f5198a93902b4202d22acf19818c021831ce29fe7786f283098881e00f33d7c2dbf93]
     TG_TOKEN: ENCRYPTED[a2f800cd6af33a88069cb94c10234351c104162a073b72cfc263e0520545bea7afe0b466800fdd4ec46b9a60ee00af46]
 
+    # Google Drive
+    RCLONECONFIG_DRIVE: ENCRYPTED[abd6c3376f90c2d5c846e6b856c1d0e1856dd5ffe25b9137c672e601179cdcaceb731222fd0dd019f8bc5254616bc15f]
+
     # Cirrus Specific Vars (Do *NOT* Change)
+    WORKDIR: "/tmp"
+    CIRRUS_CLONE_DEPTH: "1"
     CIRRUS_SHELL: bash
 
 task:
   name: "Recovery Build"
   timeout_in: 120m
   container:
-      image: ghcr.io/sushrut1101/docker:arch
+      image: anggit86/ubuntu:22.04
       cpu: 8
       memory: 32G
 
   Checks_script:
       - bash $CIRRUS_WORKING_DIR/scripts/checks.sh
+
+  Load-ccache_background_script:
+      - bash $CIRRUS_WORKING_DIR/scripts/ccache.sh
 
   Sync_script:
       - bash $CIRRUS_WORKING_DIR/scripts/sync.sh
@@ -30,5 +38,4 @@ task:
       - bash $CIRRUS_WORKING_DIR/scripts/build.sh
 
   Upload_script:
-      - export TIMEOUT=43200 # Link timeout (in minutes)
       - bash $CIRRUS_WORKING_DIR/scripts/upload.sh

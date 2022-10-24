@@ -43,10 +43,10 @@ OF_USE_LATEST_MAGISK=true
 OF_MAINTAINER=$ORANGEFOX_MAINTAINER_NAME
 
 # Not Recommended to Change
-SYNC_PATH="$HOME/work" # Full (absolute) path.
+SYNC_PATH="$WORKDIR/OrangeFox" # Full (absolute) path.
 USE_CCACHE=1
 CCACHE_SIZE="50G"
-CCACHE_DIR="$HOME/work/.ccache"
+CCACHE_DIR="$WORKDIR/ccache"
 J_VAL=8
 
 if [ ! -z "$PLATFORM" ]; then

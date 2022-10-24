@@ -51,7 +51,7 @@ telegram_message "${TG_TEXT}"
 echo " "
 
 # Kernel tree
-git clone --depth 1 https://github.com/baunilla/android_kernel_xiaomi_rosy -b lineage-19.1 kernel/xiaomi/rosy
+git clone --depth 1 https://github.com/NFS-Project/android_kernel_xiaomi_rosy -b thirteen kernel/xiaomi/rosy
 
 # Prepare the Build Environment
 source build/envsetup.sh

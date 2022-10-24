@@ -43,7 +43,7 @@ OF_USE_LATEST_MAGISK=true
 OF_MAINTAINER=$ORANGEFOX_MAINTAINER_NAME
 
 # Not Recommended to Change
-SYNC_PATH="$WORKDIR/OrangeFox" # Full (absolute) path.
+SYNC_PATH="$WORKDIR/OrFox" # Full (absolute) path.
 USE_CCACHE=1
 CCACHE_SIZE="50G"
 CCACHE_DIR="$WORKDIR/ccache"

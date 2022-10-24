@@ -49,11 +49,11 @@ git clone --depth=1 https://github.com/TeamWin/android_vendor_qcom_opensource_co
 fi
 
 # Clone Trees
-git clone $DT_LINK $DT_PATH || { echo "ERROR: Failed to Clone the Device Trees!" && exit 1; }
+git clone --depth=1 $DT_LINK -b $DT_BRANCH $DT_PATH || { echo "ERROR: Failed to Clone the Device Trees!" && exit 1; }
 
 # Clone the Kernel Sources
 # only if the Kernel Source is Specified in the Config
-[ ! -z "$KERNEL_SOURCE" ] && git clone --depth=1 --single-branch $KERNEL_SOURCE $KERNEL_PATH
+[ ! -z "$KERNEL_SOURCE" ] && git clone --depth=1 $KERNEL_SOURCE -b $KERNEL_BRANCH $KERNEL_PATH
 
 # Magisk
 if [[ $OF_USE_LATEST_MAGISK = "true" || $OF_USE_LATEST_MAGISK = "1" ]]; then

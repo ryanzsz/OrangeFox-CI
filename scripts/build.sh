@@ -5,10 +5,17 @@ source $CONFIG
 
 # A Function to Send Posts to Telegram
 telegram_message() {
-	curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
-	-d chat_id="${TG_CHAT_ID}" \
-	-d parse_mode="HTML" \
-	-d text="$1"
+	curl -v "https://api.telegram.org/bot""$TG_TOKEN""/sendPhoto?chat_id=""$TG_CHAT_ID""$ARGS_EXTRA" -H 'Content-Type: multipart/form-data' \
+	-F photo=@"${CIRRUS_WORKING_DIR}/logo/OrangeFox.jpg" \
+	-F "parse_mode=html" \
+	-F caption="🦊 <b>OrangeFox Recovery CI</b>
+==========================
+✔️ <b>The Build has been Triggered</b>
+
+📱 <b>Device:</b> "${DEVICE}"
+🖥 <b>Build System:</b> "${FOX_BRANCH}"
+🌲 <b>Logs:</b> <a href=\"https://cirrus-ci.com/build/${CIRRUS_BUILD_ID}\">Here</a>
+=========================="
 }
 
 # Change to the Source Directry
@@ -33,31 +40,14 @@ if [ "$FOX_BRANCH" = "fox_11.0" ]; then
 fi
 
 # Send the Telegram Message
-
-echo -e \
-"
-🦊 OrangeFox Recovery CI
-
-✔️ The Build has been Triggered!
-
-📱 Device: "${DEVICE}"
-🖥 Build System: "${FOX_BRANCH}"
-🌲 Logs: <a href=\"https://cirrus-ci.com/build/${CIRRUS_BUILD_ID}\">Here</a>
-" > tg.html
-
-TG_TEXT=$(< tg.html)
-
-telegram_message "${TG_TEXT}"
+telegram_message
 echo " "
-
-# Kernel tree
-git clone --depth 1 https://github.com/NFS-Project/android_kernel_xiaomi_rosy -b thirteen kernel/xiaomi/rosy
-
-# Prepare the Build Environment
-source build/envsetup.sh
 
 # Run the Extra Command
 $EXTRA_CMD
+
+# Prepare the Build Environment
+. build/envsetup.sh
 
 # export some Basic Vars
 export ALLOW_MISSING_DEPENDENCIES=true

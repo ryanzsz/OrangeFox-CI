@@ -1,9 +1,16 @@
 #!/bin/bash
 
-# Device
-export FOX_BRANCH="fox_11.0"
-export DT_LINK="https://github.com/NFS-Project/twrp_device_xiaomi_rosy -b android-11"
+# env variable
 
+# Default Branch for Orangefox
+export FOX_BRANCH="fox_11.0"
+export ARGS_EXTRA=""
+
+# Device Tree
+export DT_LINK="https://github.com/NFS-Project/twrp_device_xiaomi_rosy"
+export DT_BRANCH="android-11"
+export KERNEL_SOURCE="https://github.com/NFS-Project/android_kernel_xiaomi_rosy"
+export KERNEL_BRANCH="thirteen"
 export DEVICE="rosy"
 export OEM="xiaomi"
 
@@ -21,7 +28,7 @@ export OUTPUT="OrangeFox*.zip"
 #export PLATFORM="sm6150" # Leave it commented if you want to clone the kernel to kernel/$OEM/$DEVICE
 
 # Extra Command
-export EXTRA_CMD="git clone https://github.com/OrangeFoxRecovery/Avatar.git misc"
+export EXTRA_CMD="git clone https://github.com/OrangeFoxRecovery/Avatar.git misc && rm -rfd vendor/qcom/opensource/cryptfs_hw"
 
 # Magisk
 ## Use the Latest Release of Magisk for the OrangeFox addon

@@ -2,7 +2,7 @@
 
 # Device
 export FOX_BRANCH="fox_9.0"
-export DT_LINK="https://github.com/AnGgIt88/ofx_recovery_xiaomi_rosy -b android-9.0"
+export DT_LINK="https://github.com/NFS-Project/ofx_device_xiaomi_rosy -b fox-9.0"
 
 export DEVICE="rosy"
 export OEM="xiaomi"

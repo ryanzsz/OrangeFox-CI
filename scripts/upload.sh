@@ -21,7 +21,7 @@ FILENAME=$(echo $OUTPUT)
 # A Function to Send Posts to Telegram
 telegram_message() {
 	curl -v "https://api.telegram.org/bot""$TG_TOKEN""/sendPhoto?chat_id=""$TG_CHAT_ID""$ARGS_EXTRA" -H 'Content-Type: multipart/form-data' \
-	-F photo=@"${CIRRUS_WORKING_DIR}/logo/OrangeFox.jpg" \
+	--form photo="$END_BUILD_LOGO" \
 	-F "parse_mode=html" \
 	-F caption="$1"
 }
@@ -44,16 +44,19 @@ echo "=============================================="
 # Send the Message on Telegram
 echo -e \
 "
-🦊 <b>OrangeFox Recovery CI</b>
+<b>🦊 OrangeFox Recovery CI</b>
 ==========================
-✅ <b>Build Completed Successfully</b>
+<b>✅ Build Completed Successfully</b>
 
-📱 <b>Device:</b> "${DEVICE}"
-🖥 <b>Branch Build:</b> "${FOX_BRANCH}"
-📂 <b>Size:</b> "$(ls -lh $FILENAME | cut -d ' ' -f5)"
-📥 <b>Download Link:</b> <a href=\"${DL_LINK}\">Here</a>
-📅 <b>Date:</b> "${date +%d\ %B\ %Y}"
-⏰ <b>Time:</b> "${date +"%T"}"
+<b>📱 Device :</b> "${DEVICE}"
+<b>🖥 Branch Build :</b> "${FOX_BRANCH}"
+<b>📂 Size :</b> "$(ls -lh $FILENAME | cut -d ' ' -f5)"
+<b>📥 Download Link :</b> <a href=\"${DL_LINK}\">Here</a>
+<b>📅 Date :</b> "$(date +%d\ %B\ %Y)"
+<b>⏰ Time :</b> "$(date +"%T")"
+
+<b>📕 MD5 :-</b> <code>"$(md5sum $FILENAME | cut -d' ' -f1)"</code>
+<b>📘 SHA1 :-</b> <code>"$(sha1sum $FILENAME | cut -d' ' -f1)"</code>
 ==========================
 " > tg.html
 

@@ -6,7 +6,7 @@ source $CONFIG
 # A Function to Send Posts to Telegram
 telegram_message() {
 	curl -v "https://api.telegram.org/bot""$TG_TOKEN""/sendPhoto?chat_id=""$TG_CHAT_ID""$ARGS_EXTRA" -H 'Content-Type: multipart/form-data' \
-	-F photo=@"${CIRRUS_WORKING_DIR}/logo/OrangeFox.jpg" \
+	--form photo="$START_BUILD_LOGO" \
 	-F "parse_mode=html" \
 	-F caption="🦊 <b>OrangeFox Recovery CI</b>
 ==========================

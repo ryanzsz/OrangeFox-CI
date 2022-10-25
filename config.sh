@@ -12,6 +12,9 @@ DT_BRANCH="fox_12.1"
 DEVICE="rosy"
 OEM="xiaomi"
 
+START_BUILD_LOGO="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5-mjWtyBm11LHi8qJIIwZ9jEmGQ09HsMUX45lpOi5LNCpvBkoC-Loc6td&s=10"
+END_BUILD_LOGO="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYuKUrNG9XTb4Ts5W4gBV61pfgs0Q2wxHuUv1fzKXMYQXF4g1qIYXQgbg&s=10"
+
 # Build Target
 ## "recoveryimage" - for A-Only Devices without using Vendor Boot
 ## "bootimage" - for A/B devices without recovery partition (and without vendor boot)

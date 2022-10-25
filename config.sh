@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# env variable
-set -e
-
 # Default Branch for Orangefox
 FOX_BRANCH="fox_12.1"
 ARGS_EXTRA=""
@@ -43,7 +40,7 @@ OF_USE_LATEST_MAGISK=true
 OF_MAINTAINER=$ORANGEFOX_MAINTAINER_NAME
 
 # Not Recommended to Change
-SYNC_PATH="$WORKDIR/OrFox" # Full (absolute) path.
+SYNC_PATH="$WORKDIR/OrangeFox" # Full (absolute) path.
 USE_CCACHE=1
 CCACHE_SIZE="50G"
 CCACHE_DIR="$WORKDIR/ccache"

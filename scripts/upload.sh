@@ -23,17 +23,7 @@ telegram_message() {
 	curl -v "https://api.telegram.org/bot""$TG_TOKEN""/sendPhoto?chat_id=""$TG_CHAT_ID""$ARGS_EXTRA" -H 'Content-Type: multipart/form-data' \
 	-F photo=@"${CIRRUS_WORKING_DIR}/logo/OrangeFox.jpg" \
 	-F "parse_mode=html" \
-	-F caption="🦊 <b>OrangeFox Recovery CI</b>
-==========================
-✅ <b>Build Completed Successfully</b>
-
-📱 <b>Device:</b> "${DEVICE}"
-🖥 <b>Branch Build:</b> "${FOX_BRANCH}"
-📂 <b>Size:</b> "$(ls -lh $FILENAME | cut -d ' ' -f5)"
-📥 <b>Download Link:</b> <a href=\"${DL_LINK}\">Here</a>
-📅 <b>Date:</b> "${DATE_L}"
-⏰ <b>Time:</b> "${DATE_S}"
-=========================="
+	-F caption="$1"
 }
 
 # Display a message
@@ -41,15 +31,10 @@ echo "============================"
 echo "Uploading the Build..."
 echo "============================"
 
-# Upload to oshi.at
-if [ -z "$TIMEOUT" ];then
-    TIMEOUT=20160
-fi
-
 # Upload to Google Drive
 rclone copy --drive-chunk-size 256M --stats 1s $FILENAME NFS:recovery/$DEVICE -P || { echo "ERROR: Failed to Upload the Build!" && exit 1; }
 
-DL_LINK=$(cat link.txt | grep Download | cut -d\  -f3)
+DL_LINK=https://nfs.projek.workers.dev/0:/recovery/$DEVICE/$FILENAME
 
 # Show the Download Link
 echo "=============================================="
@@ -57,7 +42,23 @@ echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!";
 echo "=============================================="
 
 # Send the Message on Telegram
-telegram_message
+echo -e \
+"
+🦊 <b>OrangeFox Recovery CI</b>
+==========================
+✅ <b>Build Completed Successfully</b>
+
+📱 <b>Device:</b> "${DEVICE}"
+🖥 <b>Branch Build:</b> "${FOX_BRANCH}"
+📂 <b>Size:</b> "$(ls -lh $FILENAME | cut -d ' ' -f5)"
+📥 <b>Download Link:</b> <a href=\"${DL_LINK}\">Here</a>
+📅 <b>Date:</b> "${date +%d\ %B\ %Y}"
+⏰ <b>Time:</b> "${date +"%T"}"
+==========================
+" > tg.html
+
+TG_TEXT=$(< tg.html)
+telegram_message "$TG_TEXT"
 
 cd $WORKDIR
 com ()
@@ -65,7 +66,7 @@ com ()
   tar --use-compress-program="pigz -k -$2 " -cf $1.tar.gz $1
 }
 time com ccache 1
-rclone copy --drive-chunk-size 256M --stats 1s ccache.tar.gz NFS:recovery/ccache/$device -P
+rclone copy --drive-chunk-size 256M --stats 1s ccache.tar.gz NFS:recovery/ccache/$DEVICE -P
 rm -rf ccache.tar.gz
 
 echo " "

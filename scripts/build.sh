@@ -50,23 +50,20 @@ $EXTRA_CMD3
 $EXTRA_CMD4
 $EXTRA_CMD5
 
-# Prepare the Build Environment
-. build/envsetup.sh
-
 # export some Basic Vars
 export ALLOW_MISSING_DEPENDENCIES=true
 export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
 export LC_ALL="C"
 export PATH="/usr/lib/ccache:$PATH"
+export USE_CCACHE=1
+export CCACHE_DIR="$WORKDIR/ccache"
 export CCACHE_EXEC=$(which ccache)
 export CCACHE_COMPRESS=true
 which ccache
 ccache -z
 
-# Default Build Type
-if [ -z "$FOX_BUILD_TYPE" ]; then
-    export FOX_BUILD_TYPE="Release"
-fi
+# Prepare the Build Environment
+. build/envsetup.sh
 
 # Set BRANCH_INT variable for future use
 BRANCH_INT=$(echo $SYNC_BRANCH | cut -d. -f1)

@@ -42,9 +42,6 @@ OF_USE_LATEST_MAGISK=true
 # Maintainer
 OF_MAINTAINER=$ORANGEFOX_MAINTAINER_NAME
 
-# Fox Build Type Default
-FOX_BUILD_TYPE=Release-$(date +%d\-%B\-%Y)
-
 # Not Recommended to Change
 SYNC_PATH="$WORKDIR/OrangeFox" # Full (absolute) path.
 CCACHE_SIZE="50G"

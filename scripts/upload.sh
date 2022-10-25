@@ -51,9 +51,10 @@ echo -e \
 <b>📱 Device :</b> "${DEVICE}"
 <b>🖥 Branch Build :</b> "${FOX_BRANCH}"
 <b>📂 Size :</b> "$(ls -lh $FILENAME | cut -d ' ' -f5)"
+<b>⏰ Timer Build :</b> "$(grep "#### build completed successfully" $SYNC_PATH/build.log -m 1 | cut -d '(' -f 2)"
 <b>📥 Download Link :</b> <a href=\"${DL_LINK}\">Here</a>
 <b>📅 Date :</b> "$(date +%d\ %B\ %Y)"
-<b>⏰ Time :</b> "$(date +"%T")"
+<b>🕔 Time :</b> "$(date +"%T")"
 
 <b>📕 MD5 :-</b> <code>"$(md5sum $FILENAME | cut -d' ' -f1)"</code>
 <b>📘 SHA1 :-</b> <code>"$(sha1sum $FILENAME | cut -d' ' -f1)"</code>

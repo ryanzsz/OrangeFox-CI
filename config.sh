@@ -1,15 +1,15 @@
 #!/bin/bash
 
 # Default Branch for Orangefox
-FOX_BRANCH="fox_12.1"
+FOX_BRANCH="fox_9.0"
 ARGS_EXTRA=""
-ORANGEFOX_MAINTAINER_NAME="NFS-project"
+ORANGEFOX_MAINTAINER_NAME="zacky"
 
 # Device Tree
-DT_LINK="https://github.com/NFS-Project/ofx_device_xiaomi_rosy"
-DT_BRANCH="fox_12.1"
+DT_LINK="https://github.com/NFS-Project/ofx_device_xiaomi_whyred"
+DT_BRANCH="fox_9.0"
 
-DEVICE="rosy"
+DEVICE="whyred"
 OEM="xiaomi"
 
 START_BUILD_LOGO="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5-mjWtyBm11LHi8qJIIwZ9jEmGQ09HsMUX45lpOi5LNCpvBkoC-Loc6td&s=10"
@@ -30,7 +30,7 @@ OUTPUT="OrangeFox*.zip"
 
 # Extra Command
 EXTRA_CMD1="git clone https://github.com/OrangeFoxRecovery/Avatar.git misc"
-EXTRA_CMD2="git clone --depth=1 https://github.com/TeamWin/android_device_xiaomi_mithorium-common -b android-12.1 device/xiaomi/mithorium-common"
+EXTRA_CMD2=""
 EXTRA_CMD3=""
 EXTRA_CMD4=""
 EXTRA_CMD5=""
